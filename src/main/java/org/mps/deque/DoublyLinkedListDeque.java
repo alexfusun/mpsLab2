@@ -1,4 +1,4 @@
-package deque;
+package org.mps.deque;
 
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
