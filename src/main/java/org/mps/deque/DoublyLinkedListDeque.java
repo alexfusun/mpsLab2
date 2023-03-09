@@ -8,6 +8,9 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     public DoublyLinkedListDeque() {
         // TODO
+        first = null;
+        last = null;
+        size = 0;
     }
 
     @Override
@@ -18,6 +21,9 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public void append(T value) {
         // TODO
+        if (first == null) {
+            first = new DequeNode(value)
+        }
     }
 
     @Override
@@ -45,6 +51,6 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public int size() {
         // TODO
-        return 0;
+        return size;
     }
 }
