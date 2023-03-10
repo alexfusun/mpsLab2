@@ -1,0 +1,9 @@
+org\mps\deque\DequeNodeTest$TestCasesForSetters.class
+org\mps\deque\DoublyLinkedListDequeTest$TestsForSizeMethod.class
+org\mps\deque\DequeNodeTest$TestCasesForGetters.class
+org\mps\deque\DoublyLinkedListDequeTest$TestsForEmptyQueue.class
+org\mps\deque\DequeNodeTest.class
+org\mps\deque\DoublyLinkedListDequeTest.class
+org\mps\deque\DoublyLinkedListDequeTest$TestsForItemInsertion.class
+org\mps\deque\DequeNodeTest$TestCasesForPositionMethods.class
+org\mps\deque\DoublyLinkedListDequeTest$TestsForDataDeletion.class
