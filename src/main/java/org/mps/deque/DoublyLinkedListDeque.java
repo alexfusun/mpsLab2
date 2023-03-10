@@ -4,6 +4,11 @@ import org.w3c.dom.Node;
 
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
+    /*
+    @author Juan Manuel Montiel Fernández
+    @author Alex Fu Sun
+     */
+
     private DequeNode<T> first;
     private DequeNode<T> last;
     private int size;

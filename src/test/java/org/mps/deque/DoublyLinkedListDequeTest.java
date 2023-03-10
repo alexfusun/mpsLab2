@@ -6,6 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DoublyLinkedListDequeTest {
 
+    /*
+    @author Juan Manuel Montiel Fernández
+    @author Alex Fu Sun
+     */
+
     DoublyLinkedListDeque<Integer> list;
 
     @Nested

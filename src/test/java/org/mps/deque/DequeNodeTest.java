@@ -1,5 +1,6 @@
 package org.mps.deque;
 
+
 /*
     Test cases
     1.Test get methods
@@ -21,6 +22,11 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DequeNodeTest {
+
+    /*
+    @author Juan Manuel Montiel Fernández
+    @author Alex Fu Sun
+     */
     DequeNode<Integer> node1,node2,node3;
     @BeforeEach
     void setup(){
