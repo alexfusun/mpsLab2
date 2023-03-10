@@ -32,21 +32,28 @@ class DequeNodeTest {
     @Nested
     @DisplayName("Test get methods")
     class TestCasesForGetters{
+
+        //Checks that return the item value
         @Test
+        @DisplayName("getItem() returns item value")
         void getItem(){
             assertEquals(1, node1.getItem());
             assertEquals(2, node2.getItem());
             assertEquals(3, node3.getItem());
         }
 
+        //Checks that returns the previous value
         @Test
+        @DisplayName("getPrevious() returns previous value")
         void getPrevious(){
             assertNull(node1.getPrevious());
             assertEquals(node1, node2.getPrevious());
             assertEquals(node2, node3.getPrevious());
         }
 
+        //Checks that returns the next value
         @Test
+        @DisplayName("getNext() returns next value")
         void getNext(){
             DequeNode<Integer> newNode = new DequeNode<>(5,null,node1);
 
@@ -61,20 +68,27 @@ class DequeNodeTest {
     @Nested
     @DisplayName("Test set methods")
     class TestCasesForSetters{
+
+        //Checks that the item value change to the given value
         @Test
+        @DisplayName("setItem() sets a new value for item")
         void setItem(){
             node1.setItem(8);
             assertEquals(8, node1.getItem());
         }
 
+        //Checks that the next value change to the given value
         @Test
+        @DisplayName("setNext() sets a new value for next")
         void setNext(){
             DequeNode<Integer> newNode = new DequeNode<>(8,node2,null);
             node2.setNext(newNode);
             assertEquals(newNode, node2.getNext());
         }
 
+        //Checks that the previous value change to the given value
         @Test
+        @DisplayName("setPrevious() sets a new value for previous")
         void setPrevious(){
             DequeNode<Integer> newNode = new DequeNode<>(8,null,node3);
             node3.setPrevious(newNode);
@@ -85,14 +99,19 @@ class DequeNodeTest {
     @Nested
     @DisplayName("Test position methods")
     class TestCasesForPositionMethods{
+
+        //Checks that returns true only if the node is the first
         @Test
+        @DisplayName("isFirstNode() method returns true if the given node it is the first")
         void isFirstNode(){
             assertTrue(node1.isFirstNode());
             assertFalse(node2.isFirstNode());
             assertFalse(node3.isFirstNode());
         }
 
+        //Checks that returns true only if the node is the last
         @Test
+        @DisplayName("isLastNode() method returns true if the given node it is the last")
         void isLastNode(){
             DequeNode<Integer> newNode = new DequeNode<>(5,null,node1);
 
@@ -103,7 +122,9 @@ class DequeNodeTest {
             assertTrue(node3.isLastNode());
         }
 
+        //Checks that returns true only if the node is not a terminal node
         @Test
+        @DisplayName("isNotATerminalNode() method returns true if the given node it is not a terminal node")
         void isNotATerminalNode(){
             DequeNode<Integer> newNode = new DequeNode<>(5,node1,node2);
 
