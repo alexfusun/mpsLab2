@@ -2,6 +2,9 @@ package org.mps.deque;
 
 import org.w3c.dom.Node;
 
+import java.util.Comparator;
+import java.util.Objects;
+
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
 
     /*
@@ -104,5 +107,48 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     public int size() {
         // TODO
         return size;
+    }
+
+    @Override
+    public T get(int index){
+        //TODO
+        if(index < 0 || index >= size){
+            throw new IndexOutOfBoundsException("Index out of range: " + index);
+        }
+
+        if(index == 0){
+            return first.getItem();
+        }else if(index == size - 1){
+            return last.getItem();
+        }else{
+            DequeNode<T> Node = first.getNext();
+            for(int i = 1; i < index; i++){
+                Node = Node.getNext();
+            }
+            return Node.getItem();
+        }
+    }
+
+    @Override
+    public boolean contains(T value){
+        //TODO
+        DequeNode<T> Node = first;
+        for(int i = 0; i < this.size(); i++){
+            if(Objects.equals(Node.getItem(), value)){
+                return true;
+            }
+            Node = Node.getNext();
+        }
+        return false;
+    }
+
+    @Override
+    public void remove(T value){
+        //TODO
+    }
+
+    @Override
+    public void sort(Comparator<? super T> comparator){
+        //TODO
     }
 }
