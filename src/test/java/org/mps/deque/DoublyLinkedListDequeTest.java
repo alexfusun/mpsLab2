@@ -33,7 +33,9 @@ class DoublyLinkedListDequeTest {
         @Test
         @DisplayName("first() returns first element")
         void shouldReturnElementInFrontOfList() {
+            list.prepend(18);
             list.prepend(20);
+            list.append(44);
             Integer expected = 20;
             Integer returned = list.first();
             assertEquals(expected, returned);
@@ -43,6 +45,8 @@ class DoublyLinkedListDequeTest {
         @Test
         @DisplayName("last() returns last element")
         void shouldReturnElementInEndOfList() {
+            list.append(11);
+            list.prepend(32);
             list.append(34);
             Integer expected = 34;
             Integer returned = list.last();
@@ -98,6 +102,48 @@ class DoublyLinkedListDequeTest {
 
             assertEquals(expectedFirst, returnedFirst);
             assertEquals(expectedLast, returnedLast);
+        }
+
+        //Check that remove(T value) deletes the value if it is present on the queue and update the next and previous Nodes
+        @Test
+        @DisplayName("remove(T value) deletes 'value' from the queue")
+        void shouldRemoveSaidElement() {
+            Integer expectedNewPreviousElement = 20;
+            Integer expectedNewNextElement = 8;
+
+            list.remove(10);
+
+            Integer newPreviousElement = list.get(0);
+            Integer newNextElement = list.get(1);
+
+            assertFalse(list.contains(10));
+            assertEquals(expectedNewPreviousElement, newPreviousElement);
+            assertEquals(expectedNewNextElement, newNextElement);
+        }
+
+        @Test
+        void shouldRemoveSaidElementWhenNoPrevious() {
+            Integer expectedNewFirst = 10;
+            Integer expectedNewIndex0 = 10;
+
+            list.remove(20);
+
+            Integer newFirst = list.first();
+            Integer newNextIndex0 = list.get(0);
+
+            assertFalse(list.contains(8));
+            assertEquals(expectedNewFirst, newFirst);
+            assertEquals(expectedNewIndex0, expectedNewIndex0);
+        }
+
+        @Test
+        void shouldRemoveSaidElementWhenNoNext() {
+
+        }
+
+        @Test
+        void shouldRemoveSaidElementWhenNoPreviousAndNext() {
+
         }
 
     }
@@ -206,6 +252,36 @@ class DoublyLinkedListDequeTest {
 
             expected = 0;
             returned = list.size();
+
+            assertEquals(expected, returned);
+        }
+
+        //Check that remove(T value) returns correct values if Node containing 'value' is found
+        @Test
+        @DisplayName("remove(T value) should decrease size by 1 if Node is removed")
+        void sizeAfterRemoveDecreasesOne() {
+            list.append(20);
+            list.append(10);
+
+            list.remove(20);
+
+            int expected = 1;
+            int returned = list.size();
+
+            assertEquals(expected, returned);
+        }
+
+        //Check that remove(T value) returns correct values if Node containing 'value' is not found
+        @Test
+        @DisplayName("remove(T value) should remain the same if Node is not found")
+        void sizeAfterRemoveRemainsSame() {
+            list.append(20);
+            list.append(10);
+
+            list.remove(15);
+
+            int expected = 2;
+            int returned = list.size();
 
             assertEquals(expected, returned);
         }
