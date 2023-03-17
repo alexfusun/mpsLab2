@@ -3,6 +3,7 @@ package org.mps.deque;
 import org.w3c.dom.Node;
 
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.Objects;
 
 public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
@@ -173,5 +174,17 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public void sort(Comparator<? super T> comparator){
         //TODO
-    }
+        int n = this.size;                     //Lo ordenamos usando el método burbuja
+        if (first.getNext() != null) {
+            DequeNode<T> node = first;
+            DequeNode<T> next = first.getNext();
+            for (int i = 0; i < n; i++) {
+                for (int j = 1; j < (n - i); j++) {
+                    if (comparator.compare(node.getItem(), next.getItem()) > 0) {
+                        //swap elements
+                    }
+
+                }
+            }
+        }
 }
