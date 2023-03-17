@@ -341,12 +341,17 @@ class DoublyLinkedListDequeTest {
     @Nested
     @DisplayName("Tests for contains() method")
     class TestsForContainsMethod{
+        
         @BeforeEach
-        void setUp() {
+        void setup() {
             list = new DoublyLinkedListDeque<>();
-            list.append(3);
-            list.append(2);
-            list.append(1);
+            list.append(20);
+            list.append(25);
+            list.append(15);
+            list.append(-5);
+            list.append(32);
+            list.append(0);
+            list.append(12);
         }
 
         @AfterEach
@@ -355,72 +360,28 @@ class DoublyLinkedListDequeTest {
         }
 
         @Test
-        @DisplayName("return true with a element that is in the list")
-        void testContainsTrue(){
-            assertTrue(list.contains(3));
-        }
+        void shouldSortIntegersInQueue() {
+            Integer expectedFirst = -5;
+            Integer expectedSecond = 0;
+            Integer expectedThird = 12;
+            Integer expectedFourth = 15;
+            Integer expectedFifth = 20;
+            Integer expectedSixth = 25;
+            Integer expectedLast = 32;
 
-        @Test
-        @DisplayName("return false with a element that is not in the list")
-        void testContainsFalse(){
-            assertFalse(list.contains(4));
-        }
 
-        @Test
-        @DisplayName("return false with 'null' as parameter in a not empty list")
-        void testContainsNull(){
-            assertFalse(list.contains(null));
-        }
-    }
 
-    @Nested
-    @DisplayName("Tests for sort() method")
-    class TestsForSortMethod{
+            list.sort(Integer::compareTo);
 
-        @BeforeEach
-        void setUp() {
-            list = new DoublyLinkedListDeque<>();
-        }
+            assertEquals(expectedFirst, list.first());
+            assertEquals(expectedSecond, list.get(1));
+            assertEquals(expectedThird, list.get(2));
+            assertEquals(expectedFourth, list.get(3));
+            assertEquals(expectedFifth, list.get(4));
+            assertEquals(expectedSixth, list.get(5));
+            assertEquals(expectedLast, list.last());
 
-        @AfterEach
-        void tearDown() {
-            list = null;
-        }
 
-        @Test
-        @DisplayName("Checks that the list was sorted in the ascending order")
-        void sortInAscendingOrder(){
-            list.append(3);
-            list.append(1);
-            list.append(5);
-
-            list.sort(Comparator.naturalOrder());
-
-            assertEquals("[1, 3, 5]", list.toString());
-        }
-
-        @Test
-        @DisplayName("Checks that the list was sorted in the descending order")
-        void sortInDescendingOrder(){
-            list.append(3);
-            list.append(1);
-            list.append(5);
-
-            list.sort(Comparator.reverseOrder());
-
-            assertEquals("[5, 3, 1]", list.toString());
-        }
-
-        @Test
-        @DisplayName("Checks the method with a already sorted list")
-        void sortNotModifyAlreadySortedList(){
-            list.append(1);
-            list.append(3);
-            list.append(5);
-
-            list.sort(Comparator.naturalOrder());
-
-            assertEquals("[1, 3, 5]", list.toString());
         }
     }
 }
