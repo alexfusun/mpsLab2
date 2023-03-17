@@ -172,7 +172,7 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     }
 
     @Override
-    public void sort(Comparator<? super T> comparator){
+    public void sort(Comparator<? super T> comparator) {
         //TODO
         int n = this.size;                     //Lo ordenamos usando el método burbuja
         if (first.getNext() != null) {
@@ -182,9 +182,16 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
                 for (int j = 1; j < (n - i); j++) {
                     if (comparator.compare(node.getItem(), next.getItem()) > 0) {
                         //swap elements
+                        node.setNext(next.getNext());
+                        node.setPrevious(next);
+                        if (node.getPrevious() != null) {
+                            next.setPrevious(node.getPrevious());
+                        }
+                        next.setNext(node);
                     }
 
                 }
             }
         }
+    }
 }
