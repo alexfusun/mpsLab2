@@ -341,6 +341,38 @@ class DoublyLinkedListDequeTest {
     @Nested
     @DisplayName("Tests for contains() method")
     class TestsForContainsMethod{
+        @BeforeEach
+        void setUp() {
+            list = new DoublyLinkedListDeque<>();
+            list.append(3);
+            list.append(2);
+            list.append(1);
+        }
+        @AfterEach
+        void tearDown() {
+            list = null;
+        }
+        @Test
+        @DisplayName("return true with a element that is in the list")
+        void testContainsTrue(){
+            assertTrue(list.contains(3));
+        }
+        @Test
+        @DisplayName("return false with a element that is not in the list")
+        void testContainsFalse(){
+            assertFalse(list.contains(4));
+        }
+        @Test
+        @DisplayName("return false with 'null' as parameter in a not empty list")
+        void testContainsNull(){
+            assertFalse(list.contains(null));
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests for sort() method")
+    class TestsForSortMethod{
+
         
         @BeforeEach
         void setup() {
