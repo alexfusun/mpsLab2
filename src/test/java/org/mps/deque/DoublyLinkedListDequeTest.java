@@ -288,4 +288,86 @@ class DoublyLinkedListDequeTest {
 
     }
 
+    @Nested
+    @DisplayName("Tests for get() method")
+    class TestsForGetMethod{
+        @BeforeEach
+        void setUp() {
+            list = new DoublyLinkedListDeque<>();
+            list.append(3);
+            list.append(2);
+            list.append(1);
+        }
+
+        @AfterEach
+        void tearDown() {
+            list = null;
+        }
+
+        @Test
+        @DisplayName("get(0) return first element")
+        void returnFirstItem(){
+            assertEquals(3, list.get(0));
+        }
+
+        @Test
+        @DisplayName("get() return middle element")
+        void returnMiddleItem(){
+            assertEquals(2, list.get(1));
+        }
+
+        @Test
+        @DisplayName("get(size - 1) return last element")
+        void returnLastItem(){
+            assertEquals(1, list.get(2));
+        }
+
+        @Test
+        @DisplayName("get(int index) should throws IndexOutOfBoundsException if the index is negative")
+        void shouldThrowsExceptionWithNegativeParameter(){
+            assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
+        }
+
+        @Test
+        @DisplayName("get(int index) should throws IndexOutOfBoundsException if the index is equal or bigger than the list size")
+        void shouldThrowsExceptionWithBigParameter(){
+            assertThrows(IndexOutOfBoundsException.class, () -> list.get(4));
+        }
+    }
+
+    @Nested
+    @DisplayName("Tests for contains() method")
+    class TestsForContainsMethod{
+        @BeforeEach
+        void setUp() {
+            list = new DoublyLinkedListDeque<>();
+            list.append(3);
+            list.append(2);
+            list.append(1);
+        }
+
+        @AfterEach
+        void tearDown() {
+            list = null;
+        }
+
+        @Test
+        @DisplayName("return true with a element that is in the list")
+        void testContainsTrue(){
+            assertTrue(list.contains(3));
+        }
+
+        @Test
+        @DisplayName("return false with a element that is not in the list")
+        void testContainsFalse(){
+            assertFalse(list.contains(4));
+        }
+
+        @Test
+        @DisplayName("return false with 'null' as parameter in a not empty list")
+        void testContainsNull(){
+            assertFalse(list.contains(null));
+        }
+    }
+
 }
