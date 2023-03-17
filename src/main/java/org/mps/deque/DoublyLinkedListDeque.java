@@ -174,30 +174,38 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
     @Override
     public void sort(Comparator<? super T> comparator) {
         //TODO
-        int n = this.size;                     //Lo ordenamos usando el método burbuja
-        if (first.getNext() != null) {
-            DequeNode<T> node = first;
-            DequeNode<T> next = first.getNext();
-            for (int i = 0; i < n; i++) {
-                for (int j = 1; j < (n - i); j++) {
-                    if (comparator.compare(node.getItem(), next.getItem()) > 0) {
-                        //swap elements
-                        if(next.getNext() != null) {
-                            node.setNext(next.getNext());
-                        } else {
-                            this.last = node;
-                        }
-                        node.setPrevious(next);
+        DequeNode<T> node = last;
+        DequeNode<T> previous = last.getPrevious();
 
-                        if (node.getPrevious() != null) {
-                            next.setPrevious(node.getPrevious());
-                        } else {
-                            this.first = next;
-                        }
-                        next.setNext(node);
-                    }
+        int contador = this.size-1;             //Localiza el nodo previous
 
+        while (contador > 0) {
+            if (comparator.compare(node.getItem(), previous.getItem()) < 0) {
+
+                if (node.getNext() == null) {
+                    last = previous;
+                } else {
+                    previous.setNext(node.getNext());
                 }
+
+                if (previous.getPrevious() == null) {
+                    first = node;
+                } else {
+                    node.setPrevious(previous.getPrevious());
+                }
+
+                previous.setPrevious(node);
+                node.setNext(previous);
+                contador++;
+
+                if(node.getNext().getNext() != null) {
+                    node = node.getNext();
+                }
+
+            } else {
+                node = previous;
+                previous = previous.getPrevious();
+                contador--;
             }
         }
     }
