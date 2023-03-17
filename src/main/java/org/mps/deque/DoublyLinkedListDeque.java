@@ -182,10 +182,17 @@ public class DoublyLinkedListDeque<T> implements DoubleEndedQueue<T> {
                 for (int j = 1; j < (n - i); j++) {
                     if (comparator.compare(node.getItem(), next.getItem()) > 0) {
                         //swap elements
-                        node.setNext(next.getNext());
+                        if(next.getNext() != null) {
+                            node.setNext(next.getNext());
+                        } else {
+                            this.last = node;
+                        }
                         node.setPrevious(next);
+
                         if (node.getPrevious() != null) {
                             next.setPrevious(node.getPrevious());
+                        } else {
+                            this.first = next;
                         }
                         next.setNext(node);
                     }
