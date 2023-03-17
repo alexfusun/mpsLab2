@@ -1,6 +1,9 @@
 package org.mps.deque;
 
+import net.bytebuddy.utility.dispatcher.JavaDispatcher;
 import org.junit.jupiter.api.*;
+
+import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -370,4 +373,54 @@ class DoublyLinkedListDequeTest {
         }
     }
 
+    @Nested
+    @DisplayName("Tests for sort() method")
+    class TestsForSortMethod{
+
+        @BeforeEach
+        void setUp() {
+            list = new DoublyLinkedListDeque<>();
+        }
+
+        @AfterEach
+        void tearDown() {
+            list = null;
+        }
+
+        @Test
+        @DisplayName("Checks that the list was sorted in the ascending order")
+        void sortInAscendingOrder(){
+            list.append(3);
+            list.append(1);
+            list.append(5);
+
+            list.sort(Comparator.naturalOrder());
+
+            assertEquals("[1, 3, 5]", list.toString());
+        }
+
+        @Test
+        @DisplayName("Checks that the list was sorted in the descending order")
+        void sortInDescendingOrder(){
+            list.append(3);
+            list.append(1);
+            list.append(5);
+
+            list.sort(Comparator.reverseOrder());
+
+            assertEquals("[5, 3, 1]", list.toString());
+        }
+
+        @Test
+        @DisplayName("Checks the method with a already sorted list")
+        void sortNotModifyAlreadySortedList(){
+            list.append(1);
+            list.append(3);
+            list.append(5);
+
+            list.sort(Comparator.naturalOrder());
+
+            assertEquals("[1, 3, 5]", list.toString());
+        }
+    }
 }
